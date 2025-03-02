@@ -1,0 +1,7 @@
+data:
+  # path to folder with population rasters
+  path_to_population: data/raw/population
+  path_to_corine: data/raw/corine/u2018_clc2018_v2020_20u1_raster100m/DATA/U2018_CLC2018_V2020_20u1.tif
+  path_to_urban_atlas: data/raw/urban_atlas/50f2e53c420a78af65c92f337e1402452c6500ae.zip
+  city_centers: data/processed/city_centers.csv
+  countries: data/raw/countries/countries.shp
