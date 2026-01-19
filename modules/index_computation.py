@@ -1,11 +1,17 @@
+# Standard library imports
+import os
 
+# Third-party imports
+import numpy as np
 import pandas as pd
 import geopandas as gpd
 import rasterio
 import rasterio.mask
-import numpy as np
-from shapely.geometry import mapping, Point
-import os
+from rasterio.mask import mask
+from shapely.geometry import mapping, Point, Polygon
+from shapely.ops import transform
+import openrouteservice
+from rasterstats import zonal_stats
 
 def calculate_shape_index(raster_path, gpkg_file_path, city_centers_csv):
     """
@@ -115,14 +121,6 @@ def calculate_shape_index(raster_path, gpkg_file_path, city_centers_csv):
 
 
 
-
-import pandas as pd
-import geopandas as gpd
-import rasterio
-import rasterio.mask
-import numpy as np
-from shapely.geometry import mapping, Point
-import os
 
 def calculate_dispersal_index(raster_path, gpkg_file_path, city_centers_csv):
     """
@@ -242,16 +240,7 @@ def calculate_dispersal_index(raster_path, gpkg_file_path, city_centers_csv):
     
     
     
-    
-import os
-import pandas as pd
-import geopandas as gpd
-import rasterio
-from shapely.geometry import Point, Polygon
-from rasterio.mask import mask
-from shapely.ops import transform
-import openrouteservice
-from rasterstats import zonal_stats
+
 # check this out https://github.com/GIScience/openrouteservice
 def calculate_network_index(raster_path, gpkg_file_path, city_centers_csv):
     """
