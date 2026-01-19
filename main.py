@@ -1,6 +1,5 @@
 import os
 from modules.utils import merge_and_reproject_rasters, process_zip_and_geopackage, assign_projection, load_config, merge_and_plot
-from modules.utils import load_config
 from modules.index_computation import calculate_shape_index, calculate_dispersal_index, calculate_network_index
 
 os.makedirs('results', exist_ok=True)

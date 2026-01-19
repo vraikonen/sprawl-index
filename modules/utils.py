@@ -1,6 +1,25 @@
-import yaml
-import logging
+# Standard library imports
 import os
+import logging
+import zipfile
+import shutil
+
+# Third-party imports
+import yaml
+import numpy as np
+import pandas as pd
+import geopandas as gpd
+import fiona
+import rasterio
+import rasterio.mask
+from rasterio.merge import merge
+from rasterio.warp import calculate_default_transform, reproject, Resampling
+from rasterio.crs import CRS
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Create necessary directories
+os.makedirs('data/processed', exist_ok=True)
 
 def load_config():
     config_file = 'config.yaml'
@@ -11,29 +30,6 @@ def load_config():
     except Exception as e:
         logging.error(f"Cannot get config file. Error: {e}")
         raise
-    
-    
-
-import os
-import rasterio
-import matplotlib.pyplot as plt
-import numpy as np
-import rasterio
-from rasterio.warp import calculate_default_transform, reproject, Resampling
-from rasterio.crs import CRS
-
-os.makedirs('data/processed', exist_ok=True)
-    
-import os
-import rasterio
-from rasterio.merge import merge
-
-import os
-import rasterio
-from rasterio.merge import merge
-from rasterio.enums import Resampling
-from rasterio.warp import calculate_default_transform, reproject, Resampling
-from rasterio.warp import reproject
 
 def merge_and_reproject_rasters(folder_path, dst_crs='EPSG:3035'):
     """
@@ -106,20 +102,6 @@ def merge_and_reproject_rasters(folder_path, dst_crs='EPSG:3035'):
 
 
 
-import zipfile
-import os
-import geopandas as gpd
-import pandas as pd
-import fiona
-import shutil
-
-import zipfile
-import os
-import geopandas as gpd
-import pandas as pd
-import fiona
-import shutil
-
 def process_zip_and_geopackage(zip_file_path):
     fua_path = 'data/processed/fua_boundary.gpkg'
     name_path = 'data/processed/fua_names.csv'
@@ -185,10 +167,6 @@ name_path = 'data/processed/fua_names.csv'
 
 
 
-import rasterio
-from rasterio.crs import CRS
-import numpy as np
-
 def assign_projection(input_raster_path, proj4_str= '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs'):
     """
     Reprojects a raster to a new CRS using the provided PROJ4 string and writes it in chunks to avoid memory issues.
@@ -228,12 +206,6 @@ input_raster_path = 'data/raw/corine/u2018_clc2018_v2020_20u1_raster100m/DATA/U2
 output_raster_path = 'data/processed/corine3035test.tif'
 proj4_3035 = '+proj=laea +lat_0=52 +lon_0=10 +x_0=4321000 +y_0=3210000 +ellps=GRS80 +units=m +no_defs'
 
-
-import geopandas as gpd
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
-import os
 
 def merge_and_plot(
     shape_path,
